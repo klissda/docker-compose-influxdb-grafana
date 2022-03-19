@@ -1,6 +1,6 @@
 # docker-compose-influxdb-grafana for K6 load testing result
 
-I've fork this docker-compose project from @jkehres to display [K6](https://k6.io/) load testing result
+This project is a fork from @jkehres and add a Grafana dashboard to display [K6](https://k6.io/) load testing result
 
 You can run k6 with --out influxdb and point influxdb endpoint to exposed port and db as below,
 
