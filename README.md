@@ -1,3 +1,13 @@
+# docker-compose-influxdb-grafana for K6 load testing result
+
+I've fork this docker-compose project from @jkehres to display [K6](https://k6.io/) load testing result
+
+You can run k6 with --out influxdb and point influxdb endpoint to exposed port and db as below,
+
+`k6 run --vus 100 --duration 5m --out influxdb=http://localhost:8086/db0 script.js`
+
+You beed to stick with InfluxDB v1 because upstream K6 not support InfluxDB v2 yet. 
+
 # docker-compose-influxdb-grafana
 
 Multi-container Docker app built from the following services:
@@ -61,10 +71,6 @@ To provision additional data sources, see the Grafana [documentation](http://doc
 
 ## Dashboards
 
-By default, the app does create K6 Load Testing Result Grafana dashboards. 
+By default, the app does create [K6 Load Testing Result Grafana dashboard](https://grafana.com/grafana/dashboards/2587). 
 
 To provision additional dashboards, see the Grafana [documentation](http://docs.grafana.org/administration/provisioning/#dashboards) and add a config file to `./grafana-provisioning/dashboards/` before starting the app.
-
-# K6
-
-`k6 run --vus 100 --duration 5m --out influxdb=http://localhost:8086/db0 script.js`
