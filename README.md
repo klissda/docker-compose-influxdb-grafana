@@ -3,10 +3,7 @@
 Multi-container Docker app built from the following services:
 
 * [InfluxDB](https://github.com/influxdata/influxdb) - time series database
-* [Chronograf](https://github.com/influxdata/chronograf) - admin UI for InfluxDB
 * [Grafana](https://github.com/grafana/grafana) - visualization UI for InfluxDB
-
-Useful for quickly setting up a monitoring stack for performance testing. Combine with [serverless-artillery](https://github.com/Nordstrom/serverless-artillery) and [artillery-plugin-influxdb](https://github.com/Nordstrom/artillery-plugin-influxdb) to create a performance testing environment in minutes.
 
 ## Quick Start
 
@@ -35,22 +32,12 @@ The services in the app run on the following ports:
 | - | - |
 | 3000 | Grafana |
 | 8086 | InfluxDB |
-| 127.0.0.1:8888 | Chronograf |
-
-Note that Chronograf does not support username/password authentication. Anyone who can connect to the service has full admin access. Consequently, the service is not publically exposed and can only be access via the loopback interface on the same machine that runs docker.
-
-If docker is running on a remote machine that supports SSH, use the following command to setup an SSH tunnel to securely access Chronograf by forwarding port 8888 on the remote machine to port 8888 on the local machine:
-
-```
-ssh [options] <user>@<docker-host> -L 8888:localhost:8888 -N
-```
 
 ## Volumes
 
 The app creates the following named volumes (one for each service) so data is not lost when the app is stopped:
 
 * influxdb-storage
-* chronograf-storage
 * grafana-storage
 
 ## Users
@@ -74,6 +61,10 @@ To provision additional data sources, see the Grafana [documentation](http://doc
 
 ## Dashboards
 
-By default, the app does not create any Grafana dashboards. An example dashboard that's configured to work with [artillery-plugin-influxdb](https://github.com/Nordstrom/artillery-plugin-influxdb) is located at `./grafana-provisioning/dashboards/artillery.json.example`. To use this dashboard, rename it to `artillery.json`.
+By default, the app does create K6 Load Testing Result Grafana dashboards. 
 
 To provision additional dashboards, see the Grafana [documentation](http://docs.grafana.org/administration/provisioning/#dashboards) and add a config file to `./grafana-provisioning/dashboards/` before starting the app.
+
+# K6
+
+`k6 run --vus 100 --duration 5m --out influxdb=http://localhost:8086/db0 script.js`
