@@ -40,6 +40,7 @@ The services in the app run on the following ports:
 
 | Host Port | Service |
 | - | - |
+| 443 | Grafana |
 | 3000 | Grafana |
 | 8086 | InfluxDB |
 
