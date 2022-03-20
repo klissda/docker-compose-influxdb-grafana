@@ -6,7 +6,7 @@ You can run k6 with --out influxdb and point influxdb endpoint to exposed port a
 
 `k6 run --vus 100 --duration 5m --out influxdb=http://localhost:8086/db0 script.js`
 
-You beed to stick with InfluxDB v1 because upstream K6 not support InfluxDB v2 yet. 
+You need to stick with InfluxDB v1 because upstream K6 not support InfluxDB v2 yet. 
 
 # docker-compose-influxdb-grafana
 
