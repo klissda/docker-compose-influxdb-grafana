@@ -4,7 +4,7 @@ This project is a fork from @jkehres and add a Grafana dashboard to display [K6]
 
 You can run k6 with --out influxdb and point influxdb endpoint to exposed port and db as below,
 
-`k6 run --vus 100 --duration 5m --out influxdb=http://localhost:8086/db0 script.js`
+`k6 run --vus 100 --duration 5m --out influxdb=http://localhost:8086/k6 script.js`
 
 You have to stick with InfluxDB v1 because upstream K6 not support InfluxDB v2 yet. 
 
@@ -62,11 +62,11 @@ The app creates two admin users - one for InfluxDB and one for Grafana. By defau
 
 ## Database
 
-The app creates a default InfluxDB database called `db0`.
+The app creates a default InfluxDB database called `k6`.
 
 ## Data Sources
 
-The app creates a Grafana data source called `InfluxDB` that's connected to the default IndfluxDB database (e.g. `db0`).
+The app creates a Grafana data source called `InfluxDB` that's connected to the default IndfluxDB database (e.g. `k6`).
 
 To provision additional data sources, see the Grafana [documentation](http://docs.grafana.org/administration/provisioning/#datasources) and add a config file to `./grafana-provisioning/datasources/` before starting the app.
 
